@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Default_MAT
+  m_Shader: {fileID: 4800000, guid: 89226e368bc789c49b096527382942b8, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Armor:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Bro:
+        m_Texture: {fileID: 2800000, guid: c69ef919c4e3fe843bb1254ac074d31c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Clothing:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EliteNormal:
+        m_Texture: {fileID: 2800000, guid: 69f16411278886945b5d5a481f9a6f84, type: 3}
+        m_Scale: {x: 0.5, y: 0.1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 3324e3559d0096c458fc6c50abe4be29, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 2800000, guid: c69ef919c4e3fe843bb1254ac074d31c, type: 3}
+        m_Scale: {x: 0.4, y: 0.4}
+        m_Offset: {x: 0, y: 0}
+    - _node_3647:
+        m_Texture: {fileID: 2800000, guid: c69ef919c4e3fe843bb1254ac074d31c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _node_7443:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _node_8310:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _node_9300:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - PixelSnap: 0
+    - _Amplitude: 0.42
+    - _Cutoff: 0.5
+    - _Elite: 0
+    - _Speed: 10
+    - _Strength: 0.03
+    - _TimeOffset: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _EliteColor: {r: 1, g: 0, b: 0.93103456, a: 1}
+    - _Glow: {r: 0, g: 0, b: 0, a: 1}
+    - _SkinColor: {r: 1, g: 1, b: 1, a: 1}
