@@ -4,10 +4,20 @@ using UnityEngine;
 
 public class Calen : MonoBehaviour {
 	Camera cam;
-	public float walkAccel, walkDecel, walkMaxSpeed, jumpForce;
+	public float walkAccel, walkDecel, walkMaxSpeed, maxFallSpeed;
 	public static Calen instance;
+    [HideInInspector]
+    public Vector3 moveVector;
+    [HideInInspector]
+    public Rigidbody rb;
+
+    public bool canMove;
+
+    Animator anim;
 	void Awake(){
 		instance = this;
+        rb = GetComponent<Rigidbody>();
+        anim = GetComponentInChildren<Animator>();
 	}
 	// Use this for initialization
 	void Start () {
@@ -16,46 +26,70 @@ public class Calen : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//transform.LookAt(cam.transform);
-		//transform.rotation = Camera.main.transform.rotation;
-		//transform.eulerAngles = new Vector3(-5f, transform.eulerAngles.y, transform.eulerAngles.z);
+		HandleInput();
 	}
+
+    void HandleInput(){
+
+    }
 
 	void FixedUpdate(){
 	    HandleInputFixed();
+
+        if (rb.velocity.y < -maxFallSpeed){
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxFallSpeed);
+        }
 	}
+
+    float GetDeceleratedValue(float init){
+        if (init > 0){
+            return Mathf.Max(0, init - walkDecel);
+        }
+        else if (init < 0){
+            return Mathf.Min(0, init + walkDecel);
+        }
+        else{
+            return 0;
+        }
+    }
 
 
 	void HandleInputFixed(){
-        float xMove = Input.GetAxis("Horizontal");
-        float zMove = Input.GetAxis("Vertical");
+        float xMove = Input.GetAxisRaw("Horizontal");
+        float zMove = Input.GetAxisRaw("Vertical");
 
-        Vector3 moveVector = new Vector3(xMove, 0, zMove);
-
-        if (xMove == 0)
+        if (xMove == 0 || !canMove)
         {
-            //decelerate x
+            // decelerate x
+            moveVector = new Vector3(GetDeceleratedValue(moveVector.x), moveVector.y, moveVector.z);
         }
 
-        if (zMove == 0)
+        if (zMove == 0 || !canMove)
         {
             //decelerate z
+            moveVector = new Vector3(moveVector.x, moveVector.y, GetDeceleratedValue(moveVector.z));
         }
-
-
-        if (xMove != 0 || zMove != 0)
-        {
-            Walk(moveVector);
+        if (canMove){
+            anim.SetBool("walking", xMove != 0 || zMove != 0);
+            
+            if (xMove != 0 || zMove != 0)
+            {
+                // Accelerate in the direction of the inputVector
+                Vector3 inputVector = Vector3.ClampMagnitude(new Vector3(xMove, 0, zMove), 1);
+                inputVector *= walkAccel;
+                moveVector += inputVector;
+                Walk();
+            }
+        }
+        else{
+            anim.SetBool("walking", false);
         }
         
     }
 
-    void Walk(Vector3 moveVector)
+    void Walk()
     {
-        moveVector = Vector3.ClampMagnitude(moveVector, 1);
-
-        moveVector *= walkAccel;
-
         moveVector = Vector3.ClampMagnitude(moveVector, walkMaxSpeed);
+        rb.MovePosition(transform.position + moveVector);
     }
 }
