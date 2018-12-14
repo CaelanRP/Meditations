@@ -5,6 +5,8 @@ using UnityEngine;
 public class TireTrigger : MonoBehaviour {
 	public GameObject beforeColliders, afterColliders;
 	public Collider groundCollider;
+
+    public float musicDelay;
 	void OnCollisionEnter(Collision coll){
 		Debug.Log("BOOM");
 		beforeColliders.SetActive(false);
@@ -12,10 +14,18 @@ public class TireTrigger : MonoBehaviour {
 		afterColliders.SetActive(true);
 		Calen.instance.canMove = false;
 
-		Calen.instance.rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+		Calen.instance.rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePositionZ;
 
 		CameraController.instance.state = CameraState.PlayerFall;
 
-		Destroy(gameObject);
+        GetComponent<Collider>().enabled = false;
+
+        StartCoroutine(SpookyRoutine());
 	}
+
+    IEnumerator SpookyRoutine()
+    {
+        yield return new WaitForSeconds(musicDelay);
+        MusicManager.instance.Drop();
+    }
 }

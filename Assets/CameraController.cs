@@ -12,10 +12,18 @@ public class CameraController : MonoBehaviour {
 
 	public static CameraController instance;
 
+    public static Camera mainCam;
+
 	public float lerpNormal, lerpFall;
-	// Use this for initialization
-	void Start () {
-		instance = this;
+
+    private void Awake()
+    {
+        instance = this;
+        mainCam = GetComponent<Camera>();
+    }
+    // Use this for initialization
+    void Start () {
+		
 		UpdateTarget();
 		TrackTarget(true);
 	}
@@ -43,7 +51,7 @@ public class CameraController : MonoBehaviour {
 			target = Calen.instance.transform.position;
 		}
 		else if (state == CameraState.PlayerFall){
-			target = new Vector3(target.x, Calen.instance.transform.position.y, target.z);
+			target = new Vector3(Calen.instance.transform.position.x, Calen.instance.transform.position.y, target.z);
 		}
 		else if (state == CameraState.TrackingObject){
 			target = trackingObject.transform.position;

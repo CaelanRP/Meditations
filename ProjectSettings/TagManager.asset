@@ -17,8 +17,8 @@ TagManager:
   - Terrain
   - Tire
   - Player
-  - 
-  - 
+  - Camera
+  - CameraTrigger
   - 
   - 
   - 
