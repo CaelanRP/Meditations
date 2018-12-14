@@ -5,7 +5,9 @@ using UnityEngine;
 public class MusicManager : MonoBehaviour {
     public AudioClip startClip, creepyLoop, dramaticDrop;
     public static MusicManager instance;
-    AudioSource source;
+    [HideInInspector]
+    public AudioSource source;
+    public AudioSource stepSource;
     bool intro;
 	void Awake()
     {
@@ -24,6 +26,14 @@ public class MusicManager : MonoBehaviour {
         source.Stop();
         source.loop = false;
         source.clip = dramaticDrop;
+        source.Play();
+    }
+
+    public void End()
+    {
+        source.Stop();
+        source.loop = true;
+        source.clip = creepyLoop;
         source.Play();
     }
 

@@ -38,6 +38,8 @@ public class TunnelEndCollider : MonoBehaviour {
 		CameraController.instance.state = CameraState.TrackingPlayer;
 		CameraController.instance.TrackTarget(true);
 
+        MusicManager.instance.source.Stop();
+
 		yield return new WaitForSeconds(3f);
 		Calen.instance.canMove = true;
 	}

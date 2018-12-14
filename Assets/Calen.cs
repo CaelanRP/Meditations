@@ -11,9 +11,24 @@ public class Calen : MonoBehaviour {
     [HideInInspector]
     public Rigidbody rb;
 
-    public bool canMove;
+    public SpriteRenderer photoFrame, photoInterior;
+    public Color photoColor;
 
-    Animator anim;
+    public InteractZone currentInteract;
+
+    public bool _canMove
+    {
+        get
+        {
+            return canMove && !sitting;
+        }
+    }
+    public bool canMove;
+    public bool sitting;
+
+    public Animator anim;
+
+    public GameObject prompt;
 	void Awake(){
 		instance = this;
         rb = GetComponent<Rigidbody>();
@@ -23,14 +38,51 @@ public class Calen : MonoBehaviour {
 	void Start () {
 		cam = Camera.main;
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    public void StartBall()
+    {
+        sitting = true;
+        anim.SetTrigger("startball");
+    }
+
+    public void StartShovel()
+    {
+        sitting = true;
+        anim.SetTrigger("startshovel");
+    }
+
+    // Update is called once per frame
+    void Update () {
 		HandleInput();
-	}
+
+        photoFrame.color = Color.Lerp(photoFrame.color, Color.clear, 2 * Time.deltaTime);
+        photoInterior.color = Color.Lerp(photoInterior.color, Color.clear, 2 * Time.deltaTime);
+
+        prompt.SetActive(currentInteract != null && !currentInteract.inUse);
+    }
 
     void HandleInput(){
-
+        if (Input.GetButtonDown("Jump"))
+        {
+            if (sitting)
+            {
+                sitting = false;
+                anim.SetTrigger("stopsitting");
+                if (currentInteract != null)
+                {
+                    currentInteract.inUse = false;
+                }
+            }
+            else
+            {
+                if (currentInteract != null)
+                {
+                    currentInteract.inUse = true;
+                    currentInteract.Trigger();
+                }
+            }
+        }
+       
     }
 
 	void FixedUpdate(){
@@ -58,18 +110,18 @@ public class Calen : MonoBehaviour {
         float xMove = Input.GetAxisRaw("Horizontal");
         float zMove = Input.GetAxisRaw("Vertical");
 
-        if (xMove == 0 || !canMove)
+        if (xMove == 0 || !_canMove)
         {
             // decelerate x
             moveVector = new Vector3(GetDeceleratedValue(moveVector.x), moveVector.y, moveVector.z);
         }
 
-        if (zMove == 0 || !canMove)
+        if (zMove == 0 || !_canMove)
         {
             //decelerate z
             moveVector = new Vector3(moveVector.x, moveVector.y, GetDeceleratedValue(moveVector.z));
         }
-        if (canMove){
+        if (_canMove){
             anim.SetBool("walking", xMove != 0 || zMove != 0);
             
             if (xMove != 0 || zMove != 0)

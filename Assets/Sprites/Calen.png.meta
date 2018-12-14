@@ -5,6 +5,9 @@ TextureImporter:
     21300000: Calen_0
     21300002: Calen_1
     21300004: Calen_2
+    21300006: Calen_3
+    21300008: Calen_4
+    21300010: Calen_5
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -94,14 +97,14 @@ TextureImporter:
         y: 0
         width: 115
         height: 167
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 964206210e83a1c4086965c159ffc697
+      spriteID: 4cc4df798c62c964981e0f478531c318
       vertices: []
       indices: 
       edges: []
@@ -114,14 +117,14 @@ TextureImporter:
         y: 0
         width: 115
         height: 167
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c708a00a1f421434b96294731140eb69
+      spriteID: f618286c61af11e45880d8ec1ddbbf39
       vertices: []
       indices: 
       edges: []
@@ -134,14 +137,74 @@ TextureImporter:
         y: 0
         width: 115
         height: 167
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0cb7db75ff705940b1a12197b286b3b
+      spriteID: cdadd3a4ce2867e4085b8e3946b4ad46
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Calen_3
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 1
+        width: 115
+        height: 166
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00696fb517232064e93447e9ba290244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Calen_4
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 0
+        width: 115
+        height: 167
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44b8f20a88780cf44b4f865862646f0e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Calen_5
+      rect:
+        serializedVersion: 2
+        x: 629
+        y: 0
+        width: 119
+        height: 167
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 262e1c1ddb0ce4642b8e05635034ff5d
       vertices: []
       indices: 
       edges: []

@@ -20,6 +20,8 @@ public class TireTrigger : MonoBehaviour {
 
         GetComponent<Collider>().enabled = false;
 
+        Parent.instance.FreakOut();
+
         StartCoroutine(SpookyRoutine());
 	}
 
