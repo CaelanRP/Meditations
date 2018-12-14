@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AnimHelper : MonoBehaviour {
     public ParticleSystem sand;
+    public AudioClip sandAudio;
     AudioSource source;
     public AudioClip step;
     public float minPitch, maxPitch;
@@ -23,6 +24,7 @@ public class AnimHelper : MonoBehaviour {
     public void Emit()
     {
         sand.Emit(5);
+        MusicManager.instance.source.PlayOneShot(sandAudio);
     }
 
     
