@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class fallcollider : MonoBehaviour {
-    public float spinTime;
+    public float spinTime,angleTime;
 	// Use this for initialization
 	void Start () {
 		
@@ -33,7 +33,14 @@ public class fallcollider : MonoBehaviour {
             yield return null;
         }
 
-        yield return new WaitForSeconds(0.5f);
+        timeStarted = Time.time;
+        while(Time.time - timeStarted < angleTime)
+        {
+            float angle = 45 + (35 * ((Time.time - timeStarted) / angleTime));
+            CameraController.instance.transform.eulerAngles = new Vector3(angle, CameraController.instance.transform.eulerAngles.y, CameraController.instance.transform.eulerAngles.z);
+            yield return null;
+        }
+
         Calen.instance.rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePositionZ;
         Calen.instance.maxFallSpeed = 999999;
     }

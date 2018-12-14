@@ -23,8 +23,6 @@ public class CameraController : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
-		
-		UpdateTarget();
 		TrackTarget(true);
 	}
 	
@@ -34,7 +32,10 @@ public class CameraController : MonoBehaviour {
 		TrackTarget(false);
 	}
 
-	void TrackTarget(bool snap = false){
+	public void TrackTarget(bool snap = false){
+		if (snap){
+			UpdateTarget();
+		}
 		float lerp = state == CameraState.PlayerFall ? lerpFall : lerpNormal;
 
 		Vector3 vec = target + offset;
